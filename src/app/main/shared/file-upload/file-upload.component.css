@@ -1,0 +1,69 @@
+.custom-file-control:lang(en):empty::after {
+  content: "Select an image <3";
+}
+
+.btn-secondary {
+  line-height: 1.35;
+}
+
+.img-display-wrapper {
+  padding: 10px;
+  margin-top: 10px;
+  max-width: 500px;
+  width: auto;
+}
+
+.img-display-wrapper>img{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.border-homemade {
+  border: 1px dashed rgba(254, 197, 3, 0.36);
+  border-radius: 3px;
+  background-color: transparent;
+  box-shadow: 1px 1px 20px 1px #ededed;
+}
+
+.custom-file{
+  width: 100%;
+}
+
+.custom-file-control::before {
+  background-color: #fec503;
+  color: white;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  /*height: 2rem;*/
+}
+/*
+.homemade-button {
+  background-color: #fec503;
+  border-color: white;
+  color: white;
+}
+
+.homemade-button:focus {
+  box-shadow: 0 0 0 3px #e2e2e2;
+}
+
+.homemade-button:disabled {
+  background-color: rgba(254, 197, 3, 0.42);
+}*/
+
+@media (max-width:728px){
+  .btn-secondary{
+    margin-top: 8%;
+    width: 10rem;
+    /*margin-left: -5px;*/
+  }
+
+  .img-display-wrapper {
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+}

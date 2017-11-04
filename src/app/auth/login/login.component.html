@@ -1,0 +1,122 @@
+<block-ui>
+  <div class="grey-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-shrink fixed-top" id="mainNav">
+      <a class="navbar-brand" routerLink="/home">HomeMade</a>
+      <button showCollapse class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+              aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="navbar-collapse custom-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="img-bg"></div>
+    <div class="container form-top font-montserrat">
+      <h1 class="page-title">SIGN IN</h1>
+      <br>
+      <form class="border-pad" #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-group row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 mr-auto  col-sm-10">
+            <div class="input-group">
+              <i class="input-group-addon fa fa-envelope" aria-hidden="true"></i>
+              <input type="email"
+                     class="form-control"
+                     id="email"
+                     placeholder="Email"
+                     name="email"
+                     [(ngModel)]="loginUser.userName"
+                     required
+                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                     #emailField="ngModel"
+              >
+            </div>
+            <small *ngIf="!emailField.valid && emailField.touched" class="form-text text-danger">
+              You must fill your email in order to proceed.
+            </small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 mr-auto  col-sm-10">
+            <div class="input-group">
+              <i class="input-group-addon fa fa-unlock-alt" aria-hidden="true"></i>
+              <input type="password"
+                     class="form-control"
+                     id="password"
+                     placeholder="Password"
+                     name="password"
+                     [(ngModel)]="loginUser.password"
+                     required
+                     #passwordField="ngModel">
+            </div>
+            <small *ngIf="!passwordField.valid && passwordField.touched" class="form-text text-danger">
+              You must fill the password in order to proceed.
+            </small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 mr-auto col-sm-10">
+            <small>
+              <a routerLink="/register" class="homemade-color">Not registered yet? Click here to register!</a>
+            </small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 mr-auto col-sm-10">
+            <small>
+              <a routerLink="/reset" class="homemade-color">Forgot your password? Click here to reset it!</a>
+            </small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <!--<div class="col-sm-2"></div>-->
+          <div class="col-md-3"></div>
+          <div class="col-md-6 mr-auto  col-sm-10">
+            <div class="form-check">
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox"
+                       class="custom-control-input"
+                       [(ngModel)]="rememberMe"
+                       name="rememberMe">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Remember me</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <!--<div class="col-md-4"></div>-->
+          <div class="col-md-3"></div>
+          <div class="col-md-6 mr-auto  col-sm-10">
+            <div *ngIf="errorMsg" class="alert alert-warning">
+              {{errorMsg}}
+            </div>
+            <button type="submit" class="btn w-100 homemade-button" [disabled]="!f.valid">Sign in</button>
+          </div>
+        </div>
+        <div>
+          <h5 class="form-heading">OR</h5>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 mr-auto col-sm-10">
+            <google-button class="btn w-100"></google-button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</block-ui>

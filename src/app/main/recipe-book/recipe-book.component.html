@@ -1,0 +1,9 @@
+<block-ui>
+  <div class="container font-montserrat">
+    <h1 class="page-title">My Recipe Book</h1>
+    <div *ngIf="dishes" class="border-homemade p-md-4 p-2">
+      <main-recipe-details *ngFor="let dish of dishes" [dish]="dish" [recipe]="dish.recipe"></main-recipe-details>
+      <h5 *ngIf="!dishes || dishes.length == 0">You do not have any recipes in your recipe book.</h5>
+    </div>
+  </div>
+</block-ui>

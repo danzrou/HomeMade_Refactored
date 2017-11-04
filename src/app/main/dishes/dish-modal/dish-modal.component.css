@@ -1,0 +1,59 @@
+.modal-height{
+  top: 5rem;
+  margin-top: 10rem;
+  max-height: 90%;
+  margin-bottom: 10rem;
+}
+
+@media (max-width: 728px){
+  .modal-height{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+}
+
+.fa {
+  font-size: 80%;
+}
+
+.modal-description{
+  margin-top: 3%;
+}
+
+.modal-description>h5, h4, h5, span>h5{
+  color: #fec503;
+}
+
+h5{
+  font-size: 18px;
+}
+
+.dish-prop-title{
+  font-size: 1.1rem;
+  color: #fec503;
+}
+
+.modal{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.seller-name{
+}
+
+.seller-name>a{
+  font-weight: 400;
+  color: #9a9b9c;
+  text-transform: none;
+}
+
+.modal-footer{
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+h4>small{
+  font-size: 0.9rem;
+}

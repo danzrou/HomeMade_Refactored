@@ -1,0 +1,48 @@
+<!--<div class="">-->
+  <!--Add fixed position sidebar by using javascript-->
+  <div class="profile-sidebar rounded">
+    <!-- SIDEBAR USERPIC -->
+    <div class="profile-userpic">
+      <img routerLink="/main/profile/edit" [src]="user.profileImg ? attService.getProfileImgUrl(user.id, user.profileImg) : 'assets/img/users/unknown.png'" class="img-fluid pointer" alt="">
+    </div>
+    <hr>
+    <!-- END SIDEBAR USERPIC -->
+    <!-- SIDEBAR USER TITLE -->
+    <div class="profile-usertitle">
+      <div routerLink="/main/profile/edit" class="profile-usertitle-name pointer">
+        <span>{{user.firstName}} {{user.lastName}}</span>
+      </div>
+      <div class="profile-usertitle-job">
+        <span>{{user.city}}</span>
+      </div>
+    </div>
+    <!-- END SIDEBAR USER TITLE -->
+    <!-- SIDEBAR BUTTONS -->
+    <div class="profile-userbuttons">
+      <a routerLink="/main/profile/edit" role="button" class="btn btn-sm separator">Profile</a>
+      <a routerLink="/main/mydishes" role="button" class="btn btn-sm separator">My Foodies</a>
+      <a routerLink="/main/recipebook" role="button" class="btn btn-sm">Recipe Book</a>
+    </div>
+    <!-- END SIDEBAR BUTTONS -->
+    <!-- SIDEBAR MENU -->
+
+    <!--<div class="profile-usermenu container">
+      <ul class="nav row">
+        <li class="col-md-3"></li>
+        <li class="col-md-3 margin-mini-profile-links">
+          <a href="#">
+            <i class="glyphicon glyphicon-home"></i>
+            Orders
+          </a>
+        </li>
+        <li class="col-md-3 col-md-auto margin-mini-profile-links">
+          <a href="#">
+            <i class="glyphicon glyphicon-User"></i>
+            Recipe
+          </a>
+        </li>
+      </ul>
+    </div>
+    --><!-- END MENU -->
+  </div>
+<!--</div>-->

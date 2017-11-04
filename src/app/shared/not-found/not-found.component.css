@@ -1,0 +1,52 @@
+.page-bg{
+  filter: grayscale(70%);
+  background-image: url(../../../assets/img/cooking.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  z-index: -1;
+}
+
+.error-template{
+  /*background-color: #ccc;*/
+  /*opacity: 0.5;*/
+  font-family: Pacifico, Helvetica, sans-serif;
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  position: relative;
+  /*border: 0.5px solid white;*/
+  box-shadow: 10px 14px 99px 10px rgba(199, 199, 199, 0.75);
+}
+
+.error-template:after{
+  box-shadow: 10px 14px 99px 30px rgba(0,0,0,0.75);
+  position: absolute;
+}
+
+.spaced{
+  padding: 6%;
+}
+
+.btn-custom{
+  background-color: #fec503;
+  color: white;
+  opacity: 0.9;
+}
+
+.btn-custom:hover{
+  opacity: 1;
+}
+
+.large{
+  font-size: 4em
+}
+
+.fa{
+  font-size: 25px;
+}

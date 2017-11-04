@@ -1,0 +1,26 @@
+.profile-wrapper{
+  margin-top: 3.5rem;
+  /*text-align: center;*/
+}
+
+.profile-userpic>img {
+  display: block;
+  margin: 0 auto;
+  max-width: 25%;
+  max-height: 25%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+@media (max-width: 728px){
+  .profile-userpic>img {
+    max-width: 50%;
+  }
+}
+
+.profile-margin {
+  margin-bottom: 5%;
+}
+
+

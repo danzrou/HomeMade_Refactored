@@ -1,0 +1,104 @@
+.main-body /deep/ {
+  height: 100%;
+  background-color: #F8F9FA;
+  /*background-color: transparent;*/
+  padding-top: 1px;
+}
+
+.main-content /deep/ {
+  /*margin: 20px;*/
+  margin: 4rem 20px 4rem 20px;
+}
+
+/*
+
+.wrapper{
+  display: flex;
+  !*margin: 20px;*! !* MOVED TO MAIN.COMPONENT CSS !!! *!
+  flex-direction: row;
+}
+
+.wrapper>div{
+  !*padding-right: 15px;*!
+  !*padding-left: 15px;*!
+}
+
+.side-container{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.side-container>div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 1rem;
+  margin-top: 10px;
+}
+
+.center-container{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.border-homemade {
+  border: 1px solid rgba(254, 197, 3, 0.36);
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 1px 1px 20px 1px #ededed;
+}
+
+.feed-list{
+  padding: 15px;
+  margin-left: 40px;
+  width: 100%;
+}
+
+
+@media (max-width: 728px){
+  .wrapper{
+    display: block;
+  }
+
+  .wrapper>div{
+    display: block;
+  }
+
+  .side-container{
+    display: block;
+    width: 100%;
+  }
+
+  .center-container{
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .feed-list{
+    display: block;
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .main-content /deep/ {
+    margin: 4rem 0 4rem 0;
+  }
+}
+
+@media (min-width: 1200px){
+  .side-container{
+    display: block;
+    width: 30%;
+  }
+
+  .center-container{
+    width: 50%;
+  }
+}
+*/

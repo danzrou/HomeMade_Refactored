@@ -1,0 +1,9 @@
+.edit-title{
+  text-align: center;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.no-dish{
+  border: 1px dotted #ccc; padding: 1rem;
+}

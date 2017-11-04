@@ -1,0 +1,47 @@
+.order-margin-bottom{
+  margin-bottom: 1rem;
+}
+
+.date-font-size{
+  font-size: 0.7em;
+}
+
+.dish-name-size{
+  font-size: 1rem;
+}
+
+.dishName-margin-left{
+  margin-left: 6.5em;
+}
+
+.header-margin-top{
+  margin-top: 1.5em;
+}
+
+.homemade-background {
+  background-color: rgba(254, 196, 3, 0.74);
+  cursor: pointer;
+  border: none;
+  border-bottom: 0.5px solid;
+}
+
+.card{
+  border-top: none;
+}
+
+.card-content.hide{
+  max-height: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+.card-content.show{
+  max-height: 2000px;
+  /*padding: 1.25rem;*/
+  opacity: 1;
+  transition: max-height 0.5s, opacity 0.5s ease-in;
+}
+
+.table td, .table th{
+  padding: .4rem
+}

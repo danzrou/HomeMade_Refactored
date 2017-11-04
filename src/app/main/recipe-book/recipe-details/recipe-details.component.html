@@ -1,0 +1,75 @@
+<div class="card order-margin-bottom">
+  <div class="card-header homemade-background recipe-background" style="padding: 20px" (click)="showContent = !showContent">
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <!--<span class="dish-modal-name-size">Dish Name: {{dish-modal.name}}</span>-->
+        <div class="dish-name-size"><b>{{showContent? '-' : '+'}}  {{dish.name}}</b> | <i class="fa fa-user" aria-hidden="true"></i> {{dish.seller.firstName}} {{dish.seller.lastName}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table borderless">
+      <tr>
+        <th scope="row" class="w-25">Avg. Cook Time</th>
+        <td>{{recipe.avgCookTime}}</td>
+      </tr>
+      <tr>
+        <th scope="row" class="w-25">Servings</th>
+        <td>{{recipe.servings}}</td>
+      </tr>
+    </table>
+    <div class="row">
+      <div class="col-md-8 col-sm-12">
+        <button class="btn btn-outline-secondary" (click)="showContent = !showContent">{{(showContent ? 'Hide' : 'Show') +' details' | uppercase}}</button>
+        <button class="btn btn-danger" (click)="modal.show()">{{ 'Remove' | uppercase}}</button>
+      </div>
+    </div>
+    <div class="card-content" [ngClass]="{'show': showContent, 'hide': !showContent}">
+      <hr>
+      <h5 class="card-title">Dish</h5>
+      <div class="card-text">
+        <table class="table borderless table-responsive">
+          <tr><th scope="row" class="w-25">Description</th> <td>{{dish.description}}</td></tr>
+          <tr><th scope="row" class="w-25">Kosher</th> <td>{{dish.kosher ? 'Kosher' : 'Not Kosher'}}</td></tr>
+          <tr><th scope="row" class="w-25">Main Ingredients</th> <td>{{dish.ingredients}}</td></tr>
+        </table>
+      </div>
+      <hr>
+      <h5 class="card-title">Ingredients</h5>
+      <div class="card-text">
+        <table class="table borderless">
+          <tr *ngFor="let ingredient of recipe.ingredients">
+            <th scope="row" class="w-25">{{ingredient.name}}</th>
+            <td> {{ingredient.amount}} {{ingredient.measure}}</td>
+          </tr>
+        </table>
+      </div>
+      <hr>
+      <h5 class="card-title">Directions</h5>
+      <div class="card-text">
+        <table class="table borderless">
+          <tr *ngFor="let direction of recipe.directions">
+            <th class="w-5" scope="row"><div class="dir-step">{{direction.step}}</div></th>
+            <td>{{direction.description}}</td>
+          </tr>
+        </table>
+      </div>
+      <!--<hr>-->
+
+    </div>
+  </div>
+  <!--<div class="card-footer">-->
+    <!--<div class="no-focus">-->
+      <!--<star-rating-comp [readOnly]="disableRating" [starType]="'svg'" [labelText]="this.order.rating ? 'You have rated this order' : 'Rate it!'" [rating]="this.order.rating" [labelPosition]="'top'" [showHalfStars]="true" [hoverEnabled]="true" (onClick)="onOrderRated($event)"></star-rating-comp>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<pre>{{recipe | json}}</pre>-->
+</div>
+<main-generic-modal #modal>
+  <div class="generic-modal-header"><h4>Information</h4></div>
+  <div class="generic-modal-body">Are you sure you want remove {{dish.name}} from your Recipe Book?</div>
+  <div class="generic-modal-footer">
+    <div class="btn btn-outline-success" (click)="deleteFromRecipeBook(recipe, modal)">Confirm</div>
+    <div class="btn btn-outline-danger" (click)="modal.hide()">Discard</div>
+  </div>
+</main-generic-modal>

@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="spaced">
+    <div class="error-template spaced">
+      <h1 style="color: #fec503;"><strong>OOPS!</strong></h1>
+      <br>
+      <div style="padding-bottom: 10px">
+      <span class="large"><strong>4</strong></span>
+      <img class="img-fluid" style="margin-top: -5%" src="assets/img/404/plate.png" alt="" width="120px" >
+      <span class="large"><strong>4</strong></span>
+      </div>
+      <div class="lead" style="font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+        An error has occured!<br>
+        The page you are looking for was not found.
+      </div>
+      <div class="spaced">
+        <a [routerLink]="['/home']" [queryParams]="{from: '404'}" class="btn btn-custom"><i class="fa fa-home"></i> Take Me Home</a>
+      </div>
+      <div>
+        <a href="javascript:window.history.back()" class="btn btn-secondary"><i class="fa fa-chevron-left"></i> Take me back to where I was</a>
+      </div>
+    </div>
+    <div class="page-bg"></div>
+  </div>
+</div>

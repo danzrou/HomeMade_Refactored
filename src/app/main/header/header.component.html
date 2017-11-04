@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-shrink fixed-top" id="mainNav">
+  <a class="navbar-brand" routerLink="./home">HomeMade</a>
+  <button showCollapse class="navbar-toggler navbar-toggler-right" type="button"
+          data-target="#navbarResponsive" aria-controls="navbarResponsive"
+          aria-label="Toggle navigation">
+    Menu
+    <i class="fa fa-bars"></i>
+  </button>
+  <div class="navbar-collapse custom-collapse" id="navbarResponsive">
+    <ul class="navbar-nav">
+      <li class="nav-item" *ngFor="let item of navItems" [class.dropdown]="item.children">
+        <div *ngIf="!item.children; else dropdown">
+          <a *ngIf="item?.goToAnchor" scrollTo [scrollTargetSelector]="item?.goToAnchor" class="nav-link" [class.active]="item.active" [routerLink]="item?.routerLink">{{item.name}}</a>
+          <a *ngIf="!item?.goToAnchor" class="nav-link" [class.active]="item.active" [routerLink]="item?.routerLink">{{item.name}}</a>
+        </div>
+        <ng-template #dropdown>
+          <a showCollapse class="nav-link dropdown-toggle pointer" id="#{{item.name}}" [docListen]="true" [targetElementId]="'#'+item.dpName" aria-haspopup="true" aria-expanded="true">
+            {{item.name}}
+          </a>
+          <div class="dropdown-menu" id="{{item.dpName}}" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item font-montserrat" *ngFor="let child of item.children" [routerLink]="child?.routerLink">{{child.name}}</a>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a (click)="logOut()" class="nav-link pointer"> Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+      </li>
+      <li>
+        <div class="g-signin2"></div>
+      </li>
+    </ul>
+  </div>
+</nav>

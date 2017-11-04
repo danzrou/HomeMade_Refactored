@@ -1,0 +1,225 @@
+<block-ui>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
+    <a class="navbar-brand" routerLink="/home">HomeMade</a>
+    <button showCollapse class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="navbar-collapse custom-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container form-top font-montserrat">
+    <h1 class="page-title">REGISTRATION</h1>
+    <br>
+    <form class="border-pad" *ngIf="!hasRegistered" #f="ngForm" (ngSubmit)="onRegister(f)">
+      <div class="form-row alert alert-warning" *ngIf="!showGoogleBtn">
+        Retrieved Google credentials - Please fill necessary data to complete the registration.
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <div class="input-group">
+            <i class="input-group-addon fa fa-user" aria-hidden="true"></i>
+            <input type="text"
+                   class="form-control"
+                   id="firstName"
+                   placeholder="First Name"
+                   name="firstName"
+                   [(ngModel)]="userReg.firstName"
+                   required
+                   pattern="[A-Za-z- ]{2,50}"
+                   #firstNameField="ngModel">
+          </div>
+          <small *ngIf="!firstNameField.valid && firstNameField.touched" class="form-text text-danger">
+            Please enter your first name to proceed.
+          </small>
+        </div>
+        <div class="form-group col-md-6">
+          <div class="input-group">
+            <i class="input-group-addon fa fa-user" aria-hidden="true"></i>
+            <input type="text"
+                   class="form-control"
+                   id="lastName"
+                   placeholder="Last Name"
+                   name="lastName"
+                   [(ngModel)]="userReg.lastName"
+                   required
+                   pattern="[A-Za-z- ]{2,50}"
+                   #lastNameField="ngModel"
+            >
+          </div>
+          <small *ngIf="!lastNameField.valid && lastNameField.touched" class="form-text text-danger">
+            Please enter your last name to proceed.
+          </small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <i class="input-group-addon fa fa-envelope" aria-hidden="true"></i>
+            <!--<label for="userName" class="col-form-label"></label>-->
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   placeholder="Email (Username)"
+                   name="email"
+                   [(ngModel)]="userReg.email"
+                   required
+                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                   #emailField="ngModel">
+          </div>
+          <small *ngIf="!emailField.valid && emailField.touched" class="form-text text-danger">
+            Please enter your email address to proceed.<br>
+            Your email will be used as your username.
+          </small>
+        </div>
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <i class="input-group-addon fa fa-unlock-alt" aria-hidden="true"></i>
+            <input type="password"
+                   class="form-control"
+                   id="password"
+                   name="password"
+                   [(ngModel)]="userReg.password"
+                   placeholder="Password"
+                   pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                   required
+                   #passwordField="ngModel"
+            >
+          </div>
+          <small *ngIf="!passwordField.valid && passwordField.touched" class="form-text text-danger">
+            Your password must contain upper & lower case chars and a number.
+          </small>
+        </div>
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <i class="input-group-addon fa fa-unlock-alt" aria-hidden="true"></i>
+            <input type="password"
+                   class="form-control"
+                   id="rePassword"
+                   name="rePassword"
+                   placeholder="Confirm Password"
+                   required
+                   validateEqual="password"
+                   ngModel
+                   pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                   #rePassword="ngModel"
+            >
+          </div>
+          <small *ngIf="!rePassword.valid && rePassword.touched"
+                 class="form-text text-danger">
+            Passwords dont match.
+          </small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <div class="input-group">
+            <i class="input-group-addon fa fa-address-card" aria-hidden="true"></i>
+            <input type="text"
+                   class="form-control"
+                   id="address"
+                   name="address"
+                   [(ngModel)]="userReg.address"
+                   placeholder="Address"
+                   required
+                   #addressField="ngModel"
+            >
+          </div>
+          <small *ngIf="!addressField.valid && addressField.touched" class="form-text text-danger">
+            Please enter your address to proceed.<br>
+            It will be used for deliveries of orders.
+          </small>
+        </div>
+        <div class="form-group col-md-6">
+          <div class="input-group">
+            <i class="input-group-addon fa fa-home" aria-hidden="true"></i>
+            <input type="number"
+                   class="form-control"
+                   id="houseNum"
+                   placeholder="House Number"
+                   name="houseNum"
+                   [(ngModel)]="userReg.houseNum"
+                   required
+                   #houseNumField="ngModel">
+          </div>
+          <small *ngIf="!houseNumField.valid && houseNumField.touched" class="form-text text-danger">
+            Please enter your house number to proceed.<br>
+            It will be used for deliveries of orders.
+          </small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <div class="input-group">
+            <i class="input-group-addon fa fa-map-marker" aria-hidden="true"></i>
+            <select type="text"
+                    class="form-control"
+                    id="inputCity"
+                    name="city"
+                    [(ngModel)]="userReg.city"
+                    required
+                    #cityField="ngModel">
+              <option value="" disabled [selected]="true">Choose a city...</option>
+              <option *ngFor="let city of cities" [value]="city" class="option">{{city}}</option>
+            </select>
+          </div>
+          <small *ngIf="!cityField.valid && cityField.touched" class="form-text text-danger">
+            You must fill in city in order to proceed.<br>
+            It will be used for deliveries of orders.
+          </small>
+        </div>
+        <div class="form-group col-md-6">
+          <div class="input-group">
+            <i class="input-group-addon fa fa-hashtag" aria-hidden="true"></i>
+            <input type="number"
+                   class="form-control"
+                   id="inputZip"
+                   placeholder="Zip"
+                   name="zip"
+                   pattern=".{4,10}"
+                   [(ngModel)]="userReg.zip"
+                   #zipField="ngModel">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-12">
+          <div *ngIf="errorMsg" class="alert alert-danger">
+            {{errorMsg}}
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-3"></div>
+        <div class="col-md-6 mr-auto col-sm-10">
+          <button type="submit" class="btn w-100 homemade-button" [disabled]="!f.valid">Register</button>
+        </div>
+      </div>
+      <ng-container *ngIf="showGoogleBtn">
+        <div>
+          <h5 class="form-heading">OR</h5>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 mr-auto col-sm-10">
+            <google-button class="btn w-100"></google-button>
+          </div>
+        </div>
+      </ng-container>
+    </form>
+    <div class="border-pad" *ngIf="hasRegistered">
+      <h4>Thank you for registering, {{userReg.firstName}}.</h4>
+      <p>You will be now redirected...</p>
+    </div>
+  </div>
+</block-ui>

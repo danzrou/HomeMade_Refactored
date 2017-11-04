@@ -1,0 +1,180 @@
+<block-ui>
+  <div class="container font-montserrat">
+    <h1 class="page-title">Share a dish!</h1>
+    <!--<form #f="ngForm" class="border-homemade p-md-4 p-3" (ngSubmit)="onSubmit()" *ngIf="!uploadSuccess; else successTmpl">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="dishName" class="col-form-label">Dish Name</label>
+          <div class="input-group">
+            <i class="input-group-addon fa fa-tag" aria-hidden="true"></i>
+            <input type="text"
+                   class="form-control"
+                   id="dishName"
+                   [(ngModel)]="dish.name"
+                   name="dishName"
+                   #dishNameField="ngModel"
+                   required
+            >
+          </div>
+          <small *ngIf="!dishNameField.valid && dishNameField.touched" class="form-text text-danger">
+            Please enter valid dish name to proceed.
+          </small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="description" class="col-form-label">Description</label>
+          <div class="input-group">
+              <textarea type="text"
+                        rows="4"
+                        class="form-control"
+                        id="description"
+                        placeholder="e.g. Flat cake, often thin and round, prepared from a starch-based batter that may contain eggs, milk and butter and cooked on a hot surface such as a griddle or frying pan, often frying with oil or butter."
+                        name="description"
+                        [(ngModel)]="dish.description"
+                        #descriptionField="ngModel"
+                        required
+              >
+              </textarea>
+          </div>
+          <small *ngIf="!descriptionField.valid && descriptionField.touched" class="form-text text-danger">
+            Please enter valid description to proceed.
+          </small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="ingredients" class="col-form-label">Main Ingredients</label>
+          <div class="input-group">
+              <textarea type="text"
+                        rows="1"
+                        class="form-control"
+                        id="ingredients"
+                        placeholder="e.g. Milk, Meat etc"
+                        name="ingredients"
+                        [(ngModel)]="dish.ingredients"
+                        #ingredientsField="ngModel"
+                        required
+              >
+              </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <div class="form-check">
+            <label class="custom-control custom-checkbox">
+              <input type="checkbox"
+                     class="custom-control-input"
+                     [(ngModel)]="dish.kosher"
+                     name="kosher"
+                     >
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Kosher</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="price" class="col-form-label">Price</label>
+          <div class="input-group">
+            <i class="input-group-addon fa fa-shekel" aria-hidden="true"></i>
+            <input type="number"
+                   class="form-control"
+                   id="price"
+                   name="price"
+                   [(ngModel)] ="dish.price"
+                   #priceField = "ngModel"
+                   required
+            >
+          </div>
+          <small *ngIf="!priceField.valid && priceField.touched" class="form-text text-danger">
+            Please enter valid address to proceed.
+          </small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="quantity" class="col-form-label">Quantity Available</label>
+          <div class="input-group">
+            <input type="number"
+                   class="form-control"
+                   id="quantity"
+                   name="quantity"
+                   [(ngModel)]="dish.avlAmount"
+                   #quantityField="ngModel"
+                   required>
+          </div>
+          <small *ngIf="!quantityField.valid && quantityField.touched" class="form-text text-danger">
+            Please enter dish's available quantity to proceed.
+          </small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cookDate">Cook date</label>
+          <my-date-picker id="cookDate" name="mydate" placeholder="The day the foodie was cooked" [options]="myDatePickerOptions" [(ngModel)]="cookDate" (dateChanged)="onDateChanged($event)" required></my-date-picker>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="upload">Upload dish picture</label>
+          <main-file-upload id="upload" #imgUpload [dish]="dish" [type]="'dish'" [showUpload]="false" [imgWidth]="300" [maxSize]="2048"></main-file-upload>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 col-sm-12">
+          <button type="submit" class="btn homemade-button w-100" [disabled]="!f.touched || !f.valid" alt="Upload">Share it!</button>
+        </div>
+      </div>
+    </form>-->
+    <div *ngIf="!uploadSuccess" class="border-homemade p-md-4 p-3">
+      <dishes-dish-details [dish]="dish"
+                           [isEditMode]="false"
+                           [submitButtonText]="'SHARE IT'"
+                           (onUpdateSuccess)="onDishLoaded($event)"
+                           (onUpdateFailed)="onLoadFailed($event)">
+      </dishes-dish-details>
+    </div>
+    <br>
+    <ng-template [ngIf]="uploadSuccess">
+      <div class="after-form row">
+        <div class="col-md-6 col-sm-12">
+          <label for="table">Your foodie:</label>
+          <table id="table" class="table table-bordered" style="background-color: white">
+            <tbody>
+            <tr>
+              <th scope="row" class="w-50">Name</th>
+              <td>{{dish.name}}</td>
+            </tr>
+            <tr>
+              <th scope="row" class="w-50">Description</th>
+              <td>{{dish.description}}</td>
+            </tr>
+            <tr>
+              <th scope="row" class="w-50">Quantity Available</th>
+              <td>{{dish.avlAmount}}</td>
+            </tr>
+            <tr>
+              <th scope="row" class="w-50">Price</th>
+              <td>{{dish.price}} <i class="fa fa-shekel"></i></td>
+            </tr>
+            </tbody>
+          </table>
+          <p>Was loaded successfully!<br>
+            It will be now available for sell.<br>
+          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn homemade-button" [routerLink]="['/main/recipebook/edit', dish.id]">Add a Recipe</button>
+              <button class="btn btn-secondary" [routerLink]="['/main/home']">Go to Feed</button>
+            </div>
+          </div>
+          <!--<span style="font-family: Pacifico, sans-serif; font-size: 2rem" class="homemade-color">HomeMade</span>-->
+        </div>
+      </div>
+    </ng-template>
+    <div class="alert alert-danger" *ngIf="uploadFailed">Something went wrong. Please try again.</div>
+  </div>
+</block-ui>

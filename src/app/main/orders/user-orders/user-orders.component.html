@@ -1,0 +1,11 @@
+<block-ui>
+  <div class="container font-montserrat">
+    <h1 class="page-title">My Orders</h1>
+    <div *ngIf="userOrders" class="border-homemade p-md-4 p-2">
+      <orders-single-user-order *ngFor="let order of userOrders" [order]="order"></orders-single-user-order>
+    </div>
+    <div *ngIf="!userOrders || userOrders.length === 0" class="border-homemade p-md-4 p-2">
+      <div class="alert alert-warning" >You do not have any previous orders.</div>
+    </div>
+  </div>
+</block-ui>

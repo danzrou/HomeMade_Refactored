@@ -1,0 +1,191 @@
+<block-ui>
+  <div class="container font-montserrat">
+    <div class="profile-wrapper">
+      <div class="profile-userpic">
+        <img [src]="user.profileImg ? attService.getProfileImgUrl(user.id, user.profileImg) : 'assets/img/users/unknown.png'" class="img-fluid" alt="">
+      </div>
+      <h4 style="text-align: center; margin-top:0.5rem">{{user.firstName}} {{user.lastName}}</h4>
+      <div *ngIf="!updateSuccess">
+        <label for="upload">Upload new profile picture</label>
+        <main-file-upload id="upload" [type]="'profile'" [user]="user" (onUploadFinished)="onProfileUpload($event)"></main-file-upload>
+      </div>
+      <hr>
+      <form #f="ngForm" *ngIf="!updateSuccess" class="border-pad">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="lastName" class="col-form-label">First Name</label>
+            <div class="input-group">
+              <i class="input-group-addon fa fa-user" aria-hidden="true"></i>
+              <input type="text"
+                     class="form-control"
+                     id="firstName"
+                     [(ngModel)]="regUser.firstName"
+                     name="firstName"
+                     pattern="[A-Za-z- ]{2,50}"
+                     #firstNameField="ngModel"
+              >
+            </div>
+            <small *ngIf="!firstNameField.valid && firstNameField.touched" class="form-text text-danger">
+              Please enter valid first name to proceed.
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="lastName" class="col-form-label">Last Name</label>
+            <div class="input-group">
+              <input type="text"
+                     class="form-control"
+                     id="lastName"
+                     placeholder="Last Name"
+                     name="lastName"
+                     [(ngModel)]="regUser.lastName"
+                     pattern="[A-Za-z- ]{2,50}"
+                     #lastNameField="ngModel"
+              >
+            </div>
+            <small *ngIf="!lastNameField.valid && lastNameField.touched" class="form-text text-danger">
+              Please enter valid last name to proceed.
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="email" class="col-form-label">Username (Email)</label>
+            <div class="input-group">
+              <i class="input-group-addon fa fa-envelope" aria-hidden="true"></i>
+              <input type="email"
+                     class="form-control"
+                     id="email"
+                     placeholder="Username (Email)"
+                     name="email"
+                     [(ngModel)]="regUser.email"
+                     #emailField="ngModel"
+                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+              >
+            </div>
+            <small *ngIf="!emailField.valid && emailField.touched" class="form-text text-danger">
+              Please enter valid email.
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="password" class="col-form-label">New Password</label>
+            <div class="input-group">
+              <i class="input-group-addon fa fa-unlock-alt" aria-hidden="true"></i>
+              <input type="password"
+                     class="form-control"
+                     id="password"
+                     placeholder="e.g. ImAwesome1234"
+                     name="password"
+                     [(ngModel)]="regUser.password"
+                     #password="ngModel"
+                     pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+              >
+            </div>
+            <small *ngIf="!password.valid && password.touched" class="form-text text-danger">
+              Your password must contain upper & lower case chars and a number.
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="rePassword" class="col-form-label">Confirm Password</label>
+            <div class="input-group">
+              <i class="input-group-addon fa fa-unlock-alt" aria-hidden="true"></i>
+              <input type="password"
+                     class="form-control"
+                     id="rePassword"
+                     name="rePassword"
+                     placeholder="Confirm Password"
+                     validateEqual="password"
+                     [validateRequired]="false"
+                     ngModel
+                     pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                     #rePassword="ngModel"
+              >
+            </div>
+            <small *ngIf="!rePassword.valid && rePassword.touched"
+                   class="form-text text-danger">
+              Passwords dont match.
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="lastName" class="col-form-label">City</label>
+            <div class="input-group">
+              <i class="input-group-addon fa fa-map-marker" aria-hidden="true"></i>
+              <select type="text"
+                      class="form-control"
+                      id="city"
+                      name="city"
+                      [(ngModel)]="regUser.city"
+                      #cityField="ngModel">
+                <option [ngValue]="regUser.city" disabled [selected]="true">{{regUser.city}}</option>
+                <option *ngFor="let city of cities" [value]="city" class="option">{{city}}</option>
+              </select>
+            </div>
+            <small *ngIf="!cityField.valid && cityField.touched" class="form-text text-danger">
+              Please enter valid city to proceed.
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="lastName" class="col-form-label">Address</label>
+            <div class="input-group">
+              <i class="input-group-addon fa fa-address-card" aria-hidden="true"></i>
+              <input type="text"
+                     class="form-control"
+                     id="address"
+                     name="address"
+                     [(ngModel)] ="regUser.address"
+                     #addressField = "ngModel"
+              >
+            </div>
+            <small *ngIf="!addressField.valid && addressField.touched" class="form-text text-danger">
+              Please enter valid address to proceed.
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="houseNum" class="col-form-label">House Number</label>
+            <div class="input-group">
+              <i class="input-group-addon fa fa-home" aria-hidden="true"></i>
+              <input type="number"
+                     class="form-control"
+                     id="houseNum"
+                     placeholder="House Number"
+                     name="houseNum"
+                     [(ngModel)] ="regUser.houseNum"
+              >
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="lastName" class="col-form-label">Zip</label>
+            <div class="input-group">
+              <i class="input-group-addon fa fa-hashtag" aria-hidden="true"></i>
+              <input type="number"
+                     class="form-control"
+                     id="inputZip"
+                     name="zip"
+                     [(ngModel)] ="regUser.zip"
+              >
+            </div>
+          </div>
+        </div>
+        <div id="editProfileButton">
+          <button class="btn btn-outline-warning font-montserrat" (click)="onUpdate()" [disabled]="!f.touched || !f.valid" alt="Update Profile">Update Profile</button>
+        </div>
+      </form>
+    </div>
+    <br>
+    <div class="alert alert-success" *ngIf="updateSuccess">Profile was updated successfully</div>
+    <div class="alert alert-danger" *ngIf="updateFailed">Something went wrong. Please try again.</div>
+  </div>
+</block-ui>

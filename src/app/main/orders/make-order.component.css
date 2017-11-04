@@ -1,0 +1,55 @@
+input.ng-touched.ng-invalid {
+  border-color: red;
+}
+
+.form-heading {
+  text-align: center;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.input-group-addon{
+  background-color: white;
+}
+
+.orders-top-margin{
+  margin-top: 1.5em;
+}
+
+.order-group{
+  margin: 0.5rem 0;
+}
+
+.paypal-button{
+  margin-top: 0.5rem;
+}
+
+/* Added this for date picker size*/
+.bottom-margin{
+  margin-bottom: 100px;
+}
+
+/* Added for datepicker to be on top of paypal button*/
+:host /deep/ .mydp{
+  z-index: 201;
+}
+
+.border-pad {
+  padding: 40px;
+  /*border: 0.3px solid #ccc;*/
+  background-color: #f8f9fa;
+  box-shadow: 1px 1px 10px 10px #eaebec;
+}
+
+@media (max-width: 728px){
+  .border-pad{
+    padding: 20px;
+  }
+}
+
+input[readonly] {
+  background-color: white;
+}
+
+.margin-top{
+  margin-top: 1.5em;
+}

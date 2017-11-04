@@ -1,0 +1,120 @@
+*{
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  border: 1px solid rgba(254, 197, 3, 0.36);
+  border-radius: 3px;
+  padding: 8px 0 8px 0;
+  background-color: white;
+  box-shadow: 1px 1px 20px 1px #ededed;
+}
+
+.profile-userpic>img {
+  display: block;
+  margin: 0 auto;
+  max-width: 40%;
+  max-height: 40%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 1em;
+  /*font-weight: 600;*/
+  margin-bottom: 4px;
+}
+
+.profile-usertitle-job {
+  font-size: 0.9em;
+  /*font-weight: 600;*/
+  margin-bottom: 10px;
+  color: #fec503;
+  padding: 2px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.profile-userbuttons .btn  {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  /*padding: 6px 15px;*/
+  padding: 0 0 0 0.85rem;
+  color: #000;
+  background-color: white;
+  cursor: pointer;
+  /*font-weight: 600;*/
+  /*margin-right: 5px;*/
+}
+
+.profile-userbuttons .btn.separator{
+  border-right: 1px solid #ccc;
+  padding-right: 1rem;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: .5rem;
+}
+
+@media (max-width: 728px){
+  .profile-userbuttons .btn.separator{
+    padding-right: .8rem;
+  }
+}
+/*
+
+
+.profile-usermenu {
+  margin-top: 10px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+!* Profile Content *!
+
+*/

@@ -1,0 +1,108 @@
+#mainNav {
+  background-color: #222;
+}
+
+#mainNav .navbar-toggler {
+  font-size: 12px;
+  right: 0;
+  padding: 13px;
+  text-transform: uppercase;
+  color: #fff;
+  border: 0;
+  background-color: #fed136;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#mainNav .navbar-brand {
+  color: #fed136;
+  /*font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive*/
+  font-family: 'Pacifico', cursive;
+}
+
+#mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+  color: #fec503
+}
+
+#mainNav .navbar-nav .nav-item .nav-link {
+  font-size: 90%;
+  font-weight: 400;
+  padding: .75em 0;
+  letter-spacing: 1px;
+  color: #fff;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase
+}
+
+#mainNav .navbar-nav .nav-item .nav-link.active,
+#mainNav .navbar-nav .nav-item .nav-link:hover,
+#mainNav .navbar-nav .nav-item.active {
+  color: #fed136;
+}
+
+.dropdown-menu.toggle {
+  display: block;
+  background-color: #222;
+}
+
+.dropdown-item{
+  text-transform: uppercase;
+  color: #fff;
+  background-color: transparent;
+  /*border-bottom: 0.5px solid #ccc;*/
+}
+
+.dropdown-item:hover{
+  color: #fec503;
+}
+
+.dropdown-item:last-child{
+  border-bottom: none;
+}
+
+@media (min-width: 992px) {
+  #mainNav {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    -webkit-transition: padding-top .3s, padding-bottom .3s;
+    -moz-transition: padding-top .3s, padding-bottom .3s;
+    transition: padding-top .3s, padding-bottom .3s;
+    border: none;
+    background-color: transparent
+  }
+
+  #mainNav .navbar-brand {
+    font-size: 1.75em;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s
+  }
+
+  #mainNav .navbar-nav .nav-item .nav-link {
+    padding: 1.1em 1em !important
+  }
+
+  #mainNav.navbar-shrink {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #222
+  }
+
+  #mainNav.navbar-shrink .navbar-brand {
+    font-size: 1.25em;
+    padding: 12px 0;
+  }
+}
+
+@media(max-width: 992px) {
+  .custom-collapse {
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.5s ease-out, max-height 0.2s ease-in;
+    overflow: hidden;
+  }
+
+  .custom-collapse.toggle {
+    opacity: 1;
+    max-height: 300px;
+  }
+}

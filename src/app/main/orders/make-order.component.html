@@ -1,0 +1,181 @@
+<block-ui>
+  <div class="container font-montserrat bottom-margin" *ngIf="!paypalApproval">
+    <h1 class="page-title">ORDER</h1>
+    <br>
+    <div class="border-pad border-homemade">
+      <div class="row orders-top-margin">
+        <div class="col-12">
+          <h5 class="homemade-color">Your Details</h5>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tr>
+            <th scope="row" class="w-25">Name</th>
+            <td>{{order?.buyer.firstName}} {{order?.buyer.lastName}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25">Email</th>
+            <td><a href="mailto:{{order?.buyer.email}}">{{order?.buyer.email}}</a></td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25">Address</th>
+            <td>{{order?.buyer.city}}, {{order?.buyer.address}} {{order?.buyer.houseNum}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="row orders-top-margin">
+        <div class="col-12">
+          <h5 class="homemade-color">Seller Details</h5>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tr>
+            <th scope="row" class="w-25">Name</th>
+            <td>{{dish?.seller.firstName}} {{dish?.seller.lastName}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25">Email</th>
+            <td><a href="mailto:{{dish?.seller.email}}">{{dish?.seller.email}}</a></td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25">Pick-up Address</th>
+            <td>{{dish?.seller.city}}, {{dish?.seller.address}} {{dish?.seller.houseNum}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="row orders-top-margin">
+        <div class="col-12">
+          <h5 class="homemade-color">Dish Details</h5>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table ">
+          <tr>
+            <th scope="row" class="w-25">Name</th>
+            <td>{{dish?.name}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25">Ingredients</th>
+            <td>{{dish?.ingredients}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25">Price</th>
+            <td>{{dish?.price}}  <i class="fa fa-shekel"></i></td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25">Cook Date</th>
+            <td>{{dish?.cookDate}}</td>
+          </tr>
+        </table>
+      </div>
+      <hr>
+      <div class="row" *ngIf="canOrder">
+        <div class="col-12">
+          <h5 class="homemade-color">Checkout</h5>
+        </div>
+        <form #orderForm="ngForm" class="col-12">
+          <div class="form-row">
+            <div class="col-md-3 col-sm-auto">
+              <label for="pickup">Pickup Date</label>
+              <my-date-picker id="pickup" name="mydate" placeholder="Pick a date" [options]="myDatePickerOptions" [(ngModel)]="pickupDate" (dateChanged)="onDateChanged($event)" required></my-date-picker>
+            </div>
+            <div class="col-md-auto"></div>
+            <div class="col-md-3 col-sm-auto">
+              <label for="orderAmount">Quantity</label>
+              <select name="orderAmount"
+                      id="orderAmount"
+                      [(ngModel)]="order.amount"
+                      (change)="onAmountChanged($event)"
+                      required
+                      class="form-control">
+                <option *ngFor="let amount of getOrderAmounts()">{{amount}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 col-sm-12">
+              <label for="notes">Notes</label>
+              <textarea class="form-control" id="notes" [(ngModel)]="order.notes" name="notes"></textarea>
+            </div>
+          </div>
+          <br>
+          <div class="form-row">
+            <div class="col-md-3 col-sm-auto">
+              <label for="totalPrice">Total Price</label>
+              <input type="number"
+                     class="form-control"
+                     id="totalPrice"
+                     placeholder="{{order.totalPrice}}"
+                     name="totalPrice"
+                     readonly
+              >
+            </div>
+          </div>
+          <br>
+          <div class="form-row">
+            <!--<div class="col-4"></div>-->
+            <div class="col-12 paypal-button" [ngStyle]="{'opacity': orderForm.valid ? 1 : 0.5}">
+              <main-paypal id="paypal" [ngStyle]="{'pointer-events': !orderForm.valid ? 'none': 'auto'}" [data]="order" (onPayPalProcess)="paymentProcessing($event)" (onPayPalExecute)="paymentFinished($event)" (onExecuteError)="paymentExecuteError($event)"></main-paypal>
+            </div>
+          </div>
+          <br>
+          <div class="form-row">
+            <div class="col-12">
+            <agm-map [latitude]="cordBuyer.lat > 0 ? cordBuyer.lat : (cordSeller.lat > 0 ? cordSeller.lat : 32.084023)" [longitude]="cordBuyer.lng > 0 ? cordBuyer.lng : (cordSeller.lng > 0 ? cordSeller.lng : 34.781506)" [zoom]="10">
+              <agm-marker *ngIf="cordBuyer.lat > 0 && cordBuyer.lng > 0" [latitude]="cordBuyer.lat" [longitude]="cordBuyer.lng">
+                <agm-info-window><strong>{{order?.buyer.firstName}} {{order?.buyer.lastName}}</strong></agm-info-window>
+              </agm-marker>
+              <agm-marker *ngIf="cordSeller.lat > 0 && cordSeller.lng > 0" [latitude]="cordSeller.lat" [longitude]="cordSeller.lng">
+                <agm-info-window><strong>{{order?.dish?.seller.firstName}} {{order?.dish?.seller.lastName}}</strong></agm-info-window>
+              </agm-marker>
+            </agm-map>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- After Paypal Approval-->
+  <div *ngIf="paypalApproval">
+
+    <div class="container border-pad">
+      <h4>Congratulations!</h4>
+      <div class="row">
+        <!--<div class="col-2"></div>-->
+        <div class="col-6 margin-top">
+          <label for="table"><h5>Your order:</h5></label>
+          <table id="table" class="table table-bordered" style="background-color: white">
+            <tbody>
+            <tr>
+              <th scope="row">Order</th>
+              <td>{{order?.dish?.name}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Price</th>
+              <td>{{order?.totalPrice}} <i class="fa fa-shekel"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">Seller</th>
+              <td>{{order?.dish?.seller.firstName}} {{order?.dish?.seller.lastName}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p>Was placed successfully!<br>
+        * You will receive a confirmation email regarding this order?.<br>
+        * An email will be sent to the seller with your order details.
+      </p>
+    </div>
+  </div>
+  <main-generic-modal #errorModal>
+    <div class="generic-modal-header"><h3>Oops, something went wrong...</h3></div>
+    <div class="generic-modal-body">{{errorTxt}}</div>
+    <div class="generic-modal-footer">
+      <div class="btn btn-outline-success" (click)="errorModal.hide()">OK</div>
+    </div>
+  </main-generic-modal>
+</block-ui>

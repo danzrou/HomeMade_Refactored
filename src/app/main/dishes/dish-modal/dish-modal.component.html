@@ -1,0 +1,73 @@
+<!-- Modal -->
+<div (click)="onContainerClicked($event)" class="modal fade font-montserrat" tabindex="-1"
+     [ngClass]="{'in': visibleAnimate}"
+     [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0, 'overflow-y': visible? 'auto' : 'hidden'}">
+  <div class="modal-dialog modal-height modal-lg" id="draggable-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!--<ng-content select=".app-modal-header"></ng-content>-->
+        <h4>{{dish.name}} <small class="kosher-label">({{dish.avgRate}} <i class="fa fa-star" aria-hidden="true"></i>)</small>  <small class="kosher-label">{{dish.price}} <i class="fa fa-ils" aria-hidden="true"></i></small></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--<div class="modal-body" [ngStyle]="{'background-image': 'url(' + attService.getDishImgUrl(dish-modal.id, dish-modal.imgUrl) + ')'}" style="background-size: cover; color: white;">-->
+      <div class="modal-body">
+        <img *ngIf="dish.imgUrl; else defImg" class="img-fluid card-img" [src]="attService.getDishImgUrl(dish.id, dish.imgUrl)" alt="{{dish.name}}">
+        <ng-template #defImg>
+          <a class="card-title" [routerLink]="[ {outlets: { modal: [dish.id] } }]" [skipLocationChange]="true"><img class="img-fluid card-img" src="assets/img/default-dish.jpg" alt="{{dish.name}}" ></a>
+        </ng-template>
+        <div style="margin-top: 3%">
+          <h5 class="kosher-label">{{dish.kosher ? 'KOSHER' : 'NOT KOSHER'}}</h5>
+        </div>
+        <div class="modal-description">
+          <h5>Cook Date</h5>
+          <p class="font-weight-bold"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>  {{dish.cookDate}}</p>
+          <h5>Description</h5>
+          {{dish.description}}
+        </div>
+        <div class="modal-description">
+          <h5>Main Ingredients</h5>
+          {{dish.ingredients}}
+        </div>
+        <div class="modal-description">
+          <h5>Available Qty.</h5>
+          {{dish.avlAmount}}
+        </div>
+        <div class="modal-description">
+          <h5>Seller</h5>
+          <div class="seller-name">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <a class="" [routerLink]="['/main/profile/pub', dish.seller.id]">&nbsp;{{dish.seller.firstName}} {{dish.seller.lastName}}</a>
+          </div>
+        </div>
+        <hr>
+        <div class="modal-description">
+          <h5>Delivery/Pick-up Address</h5>
+          <!--{{dish.seller.city}}, {{dish.seller.address}} {{dish.seller.houseNum}}-->
+          <agm-map [latitude]="mapCords.lat > 0 ? mapCords.lat : 32.084023" [longitude]="mapCords.lng > 0 ? mapCords.lng : 34.781506" [zoom]="mapCords.lat > 0 ? 15 : 10">
+            <agm-marker *ngIf="mapCords.lat && mapCords.lng > 0" [latitude]="mapCords.lat" [longitude]="mapCords.lng">
+              <agm-info-window><strong>{{dish.seller.firstName}} {{dish.seller.lastName}}</strong></agm-info-window>
+            </agm-marker>
+          </agm-map>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!--<ng-content select=".app-modal-footer"></ng-content>-->
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <button [routerLink]="['/main/order']" [queryParams]="{'dishId': dish.id}" class="card-link btn homemade-button card-btn pointer">Order</button>
+            <button (click)="addToRecipeBook(dish.recipe)" class="card-link btn card-btn pointer recipe-button" [disabled]="!dish.recipe">Recipe-Book+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<main-generic-modal #modal>
+  <div class="generic-modal-header"><h4>Information</h4></div>
+  <div class="generic-modal-body">{{modalMsg}}</div>
+  <div class="generic-modal-footer">
+    <div class="btn btn-outline-success" (click)="modal.hide()">OK</div>
+  </div>
+</main-generic-modal>

@@ -1,0 +1,76 @@
+<div class="card order-margin-bottom">
+  <div class="card-header homemade-background" style="padding: 20px" (click)="showContent = !showContent">
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <!--<span class="dish-modal-name-size">Dish Name: {{order.dish-modal.name}}</span>-->
+        <div class="dish-name-size"><b>{{showContent? '-' : '+'}}  {{order.dish.name}}</b> | <i class="fa fa-user" aria-hidden="true"></i> {{order.dish.seller.firstName}} {{order.dish.seller.lastName}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table borderless">
+      <tr>
+        <th scope="row" class="w-25">Ordered at</th>
+        <td>{{order.purchaseDate}}</td>
+      </tr>
+      <tr>
+        <th scope="row" class="w-25">Scheduled pickup</th>
+        <td>{{order.pickupDate}}</td>
+      </tr>
+      <tr>
+        <th scope="row" class="w-25">Price</th>
+        <td>{{order.totalPrice}} ILS</td>
+      </tr>
+    </table>
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <button class="btn btn-outline-secondary" (click)="showContent = !showContent">{{(showContent ? 'Hide' : 'Show') +' details' | uppercase}}</button>
+        <button (click)="addToRecipeBook(order.dish.recipeId)" class="card-link btn card-btn pointer recipe-button" [disabled]="!(order.dish.recipeId > 0)">{{'Recipe-Book+' | uppercase}}</button>
+      </div>
+    </div>
+    <div class="card-content" [ngClass]="{'show': showContent, 'hide': !showContent}">
+      <hr>
+      <h5 class="card-title">Dish</h5>
+      <div class="card-text">
+        <table class="table borderless table-responsive">
+          <tr><th scope="row" class="w-25">Description</th> <td>{{order.dish.description}}</td></tr>
+          <tr><th scope="row" class="w-25">Kosher</th> <td>{{order.dish.kosher ? 'Kosher' : 'Not Kosher'}}</td></tr>
+          <tr><th scope="row" class="w-25">Main Ingredients</th> <td>{{order.dish.ingredients}}</td></tr>
+        </table>
+      </div>
+      <hr>
+      <h5 class="card-title">Seller</h5>
+      <div class="card-text">
+        <table class="table borderless">
+          <tr><th scope="row" class="w-25">Name</th> <td> {{order.dish.seller.firstName}} {{order.dish.seller.lastName}}</td></tr>
+          <tr><th scope="row" class="w-25">Pick-up Address</th> <td> {{order.dish.seller.city}}, {{order.dish.seller.address}} {{order.dish.seller.houseNum}}</td></tr>
+          <tr><th scope="row" class="w-25">Email</th> <td> <a href="mailto:{{order.dish.seller.email}}">{{order.dish.seller.email}}</a></td></tr>
+          <tr><th scope="row" class="w-25">Member since</th> <td> {{order.dish.seller.createdDate}}</td></tr>
+        </table>
+      </div>
+      <hr>
+      <h5 class="card-title">Payment</h5>
+      <div class="card-text">
+        <table class="table borderless">
+          <tr><th scope="row" class="w-25">Price</th><td>{{order.dish.price}}  <i class="fa fa-shekel"></i></td></tr>
+          <tr><th scope="row" class="w-25">Quantity</th><td>{{order.amount}}</td></tr>
+          <tr><th scope="row" class="w-25">Total Price</th><td>{{order.totalPrice}}  <i class="fa fa-shekel"></i></td></tr>
+        </table>
+      </div>
+      <!--<hr>-->
+
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="no-focus">
+      <star-rating-comp [readOnly]="disableRating" [starType]="'svg'" [labelText]="this.order.rating ? 'You have rated this order' : 'Rate it!'" [rating]="this.order.rating" [labelPosition]="'top'" [showHalfStars]="true" [hoverEnabled]="true" (onClick)="onOrderRated($event)"></star-rating-comp>
+    </div>
+  </div>
+</div>
+<main-generic-modal #modal>
+  <div class="generic-modal-header"><h4>Information</h4></div>
+  <div class="generic-modal-body">{{modalMsg}}</div>
+  <div class="generic-modal-footer">
+    <div class="btn btn-outline-success" (click)="modal.hide()">OK</div>
+  </div>
+</main-generic-modal>

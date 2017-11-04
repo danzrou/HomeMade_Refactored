@@ -1,0 +1,160 @@
+.feed-list{
+  padding: 15px;
+  margin-left: 40px;
+  width: 50%;
+}
+
+.card-img-top{
+  width: 800px;
+}
+
+.card-title{
+  text-decoration: none;
+}
+
+.card-title:hover{
+  text-decoration: none;
+}
+
+.price{
+  border-bottom: 0.6px dashed blue;
+  /*padding: 5px;*/
+  border-radius: 2px;
+}
+
+.price:hover{
+  color: inherit;
+}
+
+.price-icon{
+  font-size: 0.8rem;
+}
+
+.sub-title{
+  margin-top: 0.2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+}
+
+.float-right{
+  margin: 0.6em 0;
+}
+
+.kosher-label{
+  color: #57cc29;
+}
+
+.profile-link{
+  color: #9a9b9c;
+  text-transform: none;
+  font-size: 0.8rem;
+}
+
+.dish-name{
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #fec503;
+}
+
+.dish-rating{
+  font-size: 1rem;
+}
+
+.card-custom{
+  padding: 10px;
+  border: none;
+}
+
+.dish-info{
+  font-size: 0.8rem;
+  color: black;
+  text-transform: uppercase;
+}
+
+.dish-separator{
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.dish-info-title{
+  font-weight: bold;
+  font-size: 0.8rem;
+  /*color: #cc3222;*/
+  text-transform: uppercase;
+  /*text-decoration: underline;*/
+}
+
+.style-none {
+  list-style: none;
+}
+
+.card-body-text {
+  font-size: 0.9rem;
+}
+
+.border-feed-items {
+  margin: 20px 0px;
+  border-top: 1px solid #93a3b5;
+}
+
+.link {
+  color: blue;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*.card-btn{
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}*/
+
+.card-btn:hover {
+  transform: scale(1.1);
+  color: white;
+}
+
+.card-btn:disabled {
+  background-color: #ccc;
+  border: none;
+  cursor: default;
+}
+
+.card-btn:disabled:hover {
+  transform: none;
+}
+
+.card-img{
+  max-height: 500px;
+}
+
+.card-body>a:hover{
+  text-decoration: none;
+}
+
+@media(max-width: 728px){
+  .feed-list{
+    width: 100%;
+    margin: 0;
+  }
+
+  .dish-name{
+    font-size: 1.2rem;
+  }
+
+  .sub-title{
+    font-size: 0.7rem;
+  }
+
+  .price{
+    display: inline-block;
+  }
+
+  .float-right{
+    margin: 0;
+    float: none!important;
+  }
+}

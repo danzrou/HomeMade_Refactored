@@ -1,0 +1,29 @@
+<!--<div class="container-fluid">-->
+<div class="form-row">
+  <div class="col-md-4 col-sm-10">
+    <label class="custom-file">
+      <input type="file" id="file2" (change)="readFileToDisplay($event)" class="custom-file-input" #fileInput>
+      <span class="custom-file-control"></span>
+    </label>
+  </div>
+  <div *ngIf="url && showUpload" class="col-md-auto">
+    <button class="btn btn-secondary" (click)="upload()">Upload!</button>
+  </div>
+</div>
+<br>
+<div class="form-row">
+  <div *ngIf="uploadSuccess" class="col-md-4 col-sm-12 alert alert-success" style="text-align: center">
+    {{uploadSuccessMsg}}
+  </div>
+  <div *ngIf="uploadFailed" class="col-md-4 col-sm-12 alert alert-danger" style="text-align: center">
+    {{uploadFailedMsg}}
+  </div>
+  <div *ngIf="warningMsg" class="col-md-4 col-sm-12 alert alert-warning" style="text-align: center">
+    {{warningMsg}}
+  </div>
+</div>
+<div *ngIf="url"  class="img-display-wrapper rounded border-homemade">
+  <img [src]="url" style="max-width: 300px" [style.width.px]="imgWidth">
+</div>
+
+<!--</div>-->

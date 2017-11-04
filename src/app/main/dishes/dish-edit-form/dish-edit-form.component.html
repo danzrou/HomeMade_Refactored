@@ -1,0 +1,161 @@
+<form #f="ngForm" class="" (ngSubmit)="onSubmit()" *ngIf="!uploadSuccess">
+  <div *ngIf="isEditMode">
+    <img *ngIf="dish.imgUrl; else defImg" class="img-fluid" [src]="attService.getDishImgUrl(dish.id, dish.imgUrl)" alt="{{dish.name}}" width="500px">
+    <ng-template #defImg>
+      <h5 class="text-warning no-dish">No image was uploaded for this dish</h5>
+    </ng-template>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="dishName" class="col-form-label">Dish Name</label>
+      <div class="input-group">
+        <i class="input-group-addon fa fa-tag" aria-hidden="true"></i>
+        <input type="text"
+               class="form-control"
+               id="dishName"
+               [(ngModel)]="dish.name"
+               name="dishName"
+               #dishNameField="ngModel"
+               required
+        >
+      </div>
+      <small *ngIf="!dishNameField.valid && dishNameField.touched" class="form-text text-danger">
+        Please enter valid dish name to proceed.
+      </small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="description" class="col-form-label">Description</label>
+      <div class="input-group">
+              <textarea type="text"
+                        rows="4"
+                        class="form-control"
+                        id="description"
+                        placeholder="e.g. Flat cake, often thin and round, prepared from a starch-based batter that may contain eggs, milk and butter and cooked on a hot surface such as a griddle or frying pan, often frying with oil or butter."
+                        name="description"
+                        [(ngModel)]="dish.description"
+                        #descriptionField="ngModel"
+                        required
+              >
+              </textarea>
+      </div>
+      <small *ngIf="!descriptionField.valid && descriptionField.touched" class="form-text text-danger">
+        Please enter valid description to proceed.
+      </small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="ingredients" class="col-form-label">Main Ingredients</label>
+      <div class="input-group">
+              <textarea type="text"
+                        rows="1"
+                        class="form-control"
+                        id="ingredients"
+                        placeholder="e.g. Milk, Meat etc"
+                        name="ingredients"
+                        [(ngModel)]="dish.ingredients"
+                        #ingredientsField="ngModel"
+                        required
+              >
+              </textarea>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="form-check">
+        <label class="custom-control custom-checkbox">
+          <input type="checkbox"
+                 class="custom-control-input"
+                 [(ngModel)]="dish.kosher"
+                 name="kosher"
+          >
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Kosher</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="price" class="col-form-label">Price</label>
+      <div class="input-group">
+        <i class="input-group-addon fa fa-shekel" aria-hidden="true"></i>
+        <input type="number"
+               class="form-control"
+               id="price"
+               name="price"
+               [(ngModel)] ="dish.price"
+               #priceField = "ngModel"
+               required
+        >
+      </div>
+      <small *ngIf="!priceField.valid && priceField.touched" class="form-text text-danger">
+        Please enter valid address to proceed.
+      </small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="quantity" class="col-form-label">Quantity Available</label>
+      <div class="input-group">
+        <input type="number"
+               class="form-control"
+               id="quantity"
+               name="quantity"
+               [(ngModel)]="dish.avlAmount"
+               #quantityField="ngModel"
+               required
+        >
+      </div>
+      <small *ngIf="!quantityField.valid && quantityField.touched" class="form-text text-danger">
+        Please enter dish's available quantity to proceed.
+      </small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="cookDate">Cook date</label>
+      <my-date-picker id="cookDate" name="mydate" placeholder="{{dish.cookDate}}" [options]="myDatePickerOptions" [(ngModel)]="cookDate" (dateChanged)="onDateChanged($event)" required></my-date-picker>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="upload">Upload dish picture</label>
+      <main-file-upload id="upload" #imgUpload [dish]="dish" [type]="'dish'" [showUpload]="false" [imgWidth]="300" [maxSize]="2048"></main-file-upload>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-3 col-sm-12" [ngClass]="{'col-md-3': isEditMode, 'col-md-6': !isEditMode}">
+      <button type="submit" class="btn homemade-button w-100" [disabled]="!f.valid" alt="Upload">{{submitButtonText}}</button>
+    </div>
+    <div *ngIf="dish.status === 1 && isEditMode" class="col-md-3 col-sm-12">
+      <button type="button" class="btn btn-danger w-100" alt="Remove dish" (click)="modal.show()">HIDE FROM FEED</button>
+    </div>
+    <div *ngIf="dish.status != 1 && isEditMode" class="col-md-3 col-sm-12">
+      <button type="button" class="btn btn-success w-100" alt="Remove dish" (click)="modalEnable.show()">RESTORE TO FEED</button>
+    </div>
+  </div>
+</form>
+<ng-content select=".after-form"></ng-content>
+<div>
+  <main-generic-modal #modal>
+    <div class="generic-modal-header"><h3>Confirmation</h3></div>
+    <div class="generic-modal-body">Are you sure you want to remove {{dish.name}} from your dishes?</div>
+    <div class="generic-modal-footer">
+      <div class="btn btn-outline-success" (click)="updateDish(dish, 0, modal)">Confirm</div>
+      <div class="btn btn-outline-danger" (click)="modal.hide()">Discard</div>
+    </div>
+  </main-generic-modal>
+
+  <main-generic-modal #modalEnable>
+    <div class="generic-modal-header"><h3>Confirmation</h3></div>
+    <div class="generic-modal-body">Are you sure you want to restore {{dish.name}} to your dishes?</div>
+    <div class="generic-modal-footer">
+      <div class="btn btn-outline-success" (click)="updateDish(dish, 1, modalEnable)">Confirm</div>
+      <div class="btn btn-outline-danger" (click)="modalEnable.hide()">Discard</div>
+    </div>
+  </main-generic-modal>
+</div>

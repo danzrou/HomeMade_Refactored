@@ -1,0 +1,16 @@
+.borderless td, .borderless th {
+  border: none;
+}
+
+.homemade-background {
+  background-color: rgba(254, 196, 3, 0.74);
+  cursor: pointer;
+  border: none;
+  border-bottom: 0.5px solid;
+}
+
+.edit-title{
+  text-align: center;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+}

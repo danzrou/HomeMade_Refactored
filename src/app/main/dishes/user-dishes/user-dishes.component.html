@@ -1,0 +1,82 @@
+<block-ui>
+  <div class="container font-montserrat">
+    <h1 class="page-title">My Dish List</h1>
+    <div class="border-homemade p-md-4 p-2">
+      <div *ngIf="!shownDishes || shownDishes.length == 0">
+        <div class="card">
+          <div class="card-header homemade-background">
+            <h4>No shared dishes</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">You have not shared any dishes yet. Share one now!</div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn homemade-button w-50" [routerLink]="['/main/sell']">Share a dish!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom: 2rem;" *ngFor="let dish of shownDishes">
+        <h5 class="card-header homemade-background" >{{dish.name}}</h5>
+        <div class="card-body">
+          <table class="table borderless">
+            <tr>
+              <th scope="row" class="w-25">Main Ingredients</th>
+              <td>{{dish.ingredients}}</td>
+            </tr>
+            <tr>
+              <th scope="row" class="w-25">Cook date</th>
+              <td>{{dish.cookDate}}</td>
+            </tr>
+            <tr>
+              <th scope="row" class="w-25">Price</th>
+              <td>{{dish.price}} ILS</td>
+            </tr>
+            <tr>
+              <th scope="row" class="w-25">Status</th>
+              <td>{{dish.status==1? 'Active' : 'Not Active'}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="card-footer" style="background-color: white">
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <!--<a class="btn btn-secondary" [routerLink]="['./', dish.id]">{{'See / edit details' | uppercase}}</a>-->
+              <button *ngIf="!showEdit" class="btn btn-outline-secondary" (click)="editDish(dish)">{{'View / edit details' | uppercase}}</button>
+              <button class="btn btn-outline-success" [routerLink]="['/main/recipebook/edit', dish.id]">{{'Add / edit recipe' | uppercase}}</button>
+              <button *ngIf="showEdit || showEditRecipe" class="btn homemade-button" (click)="finishEdit(dish)">{{'Back to list' | uppercase}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showEdit" class="container mt-4 font-montserrat">
+    <div class="border-homemade p-md-4 p-3">
+      <h4 class="edit-title">Edit {{dishToEdit.name}}</h4>
+      <hr>
+      <dishes-dish-details [dish]="dishToEdit"
+                           [isEditMode]="true"
+                           [submitButtonText]="'UPDATE'"
+                           (onUpdateSuccess)="onDishUpdated($event)"
+                           (onUpdateFailed)="onUpdateFailed($event)">
+        <hr><!--(dishUpdated)="onDishUpdated($event)"-->
+        <div class="after-form">
+          <div class="row">
+            <div *ngIf="uploadSuccess" class="col-md-6 col-sm-12 text-success">
+              <h6>{{dishToEdit.name}} was updated successfully!</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div *ngIf="uploadFailed" class="col-md-6 col-sm-12 text-danger">
+              <h6>Something went wrong. Please try again.</h6>
+            </div>
+          </div>
+        </div>
+      </dishes-dish-details>
+    </div>
+  </div>
+</block-ui>

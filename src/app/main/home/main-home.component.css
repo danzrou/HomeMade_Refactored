@@ -1,0 +1,85 @@
+.wrapper{
+  display: flex;
+  /*margin: 20px;*/ /* MOVED TO MAIN.COMPONENT CSS !!! */
+  flex-direction: row;
+}
+
+.wrapper>div{
+  /*padding-right: 15px;*/
+  /*padding-left: 15px;*/
+}
+
+.side-container{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.side-container>div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 1rem;
+  margin-top: 10px;
+}
+
+.center-container{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.border-homemade {
+  border: 1px solid rgba(254, 197, 3, 0.36);
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 1px 1px 20px 1px #ededed;
+}
+
+.feed-list{
+  padding: 15px;
+  margin-left: 40px;
+  /*width: 70%;*/
+}
+
+
+@media (max-width: 728px){
+  .wrapper{
+    display: block;
+  }
+
+  .wrapper>div{
+    display: block;
+  }
+
+  .side-container{
+    display: block;
+    width: 100%;
+  }
+
+  .center-container{
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .feed-list{
+    display: block;
+    width: 100%;
+    margin-left: 0px;
+  }
+}
+
+@media (min-device-width: 768px)  and (max-device-width: 1024px) {
+  .side-container{
+    /*display: block;*/
+    width: 40%;
+  }
+
+  .center-container{
+    width: 50%;
+  }
+}

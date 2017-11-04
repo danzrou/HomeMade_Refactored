@@ -1,0 +1,33 @@
+.profile-wrapper{
+  margin-top: 3.5rem;
+  /*text-align: center;*/
+  font-size: 0.9rem;
+}
+
+.profile-userpic>img {
+  display: block;
+  margin: 0 auto;
+  max-width: 25%;
+  max-height: 25%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+@media (max-width: 728px){
+  .profile-userpic>img {
+    max-width: 50%;
+  }
+}
+
+#editProfileButton {
+  /*text-align: center;*/
+}
+
+input.ng-touched.ng-invalid {
+  border-color: red;
+}
+
+.input-group-addon{
+  background-color: white;
+}

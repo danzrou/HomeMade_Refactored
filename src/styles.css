@@ -1,0 +1,138 @@
+/* You can add global styles to this file, and also import other style files */
+
+.btn{
+  border-radius: 0;
+}
+
+
+.pointer{
+  cursor: pointer;
+}
+
+div.block-ui-wrapper {
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: auto;
+  /*z-index: 1;*/
+}
+
+div.block-ui-wrapper .loader {
+  /*border-color: #fff; !* Circle color *!*/
+  /*border-left-color: #F8971D;*/
+  border-top: 10px solid #fec503;
+  border-right: 10px solid #f9f9f9;
+  border-bottom: 10px solid #fec503;
+  border-left: 10px solid #f9f9f9;
+  font-size: 7px;
+}
+
+div.block-ui-spinner .message {
+  color: #000; /* Loading text color */
+  /*font-family: Pacifico, Helvetica, sans-serif;*/
+}
+
+.homemade-color {
+  color: #fec503;
+}
+
+.page-title {
+  text-align: center;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  margin: 1rem 0 1rem 0;
+  padding: 1.5rem 1rem;
+
+  background-color: #f8f9fa;
+  box-shadow: 1px 1px 10px 5px #eaebec;
+}
+
+.border-pad {
+  padding: 40px;
+  /*border: 0.3px solid #ccc;*/
+  background-color: #f8f9fa;
+  box-shadow: 1px 1px 10px 10px #eaebec;
+}
+
+.recipe-background {
+  background-color: #57cc29;
+}
+
+.recipe-button {
+  background-color: #57cc29;
+  /*border-color: white;*/
+  border-radius: 0;
+  color: white;
+}
+
+.homemade-button {
+  background-color: #fec503;
+  border-color: #fec503;
+  color: white;
+}
+
+.homemade-button:focus {
+  box-shadow: 0 0 0 3px #e2e2e2;
+}
+
+.homemade-button:disabled {
+  background-color: rgba(254, 197, 3, 0.42);
+}
+
+.custom-control-input:focus ~ .custom-control-indicator {
+  /*background-color: #fec503;*/
+  /*border-color: red;*/
+  box-shadow: 0 0 0 3px #fec503;
+}
+
+.custom-control-input:checked ~ .custom-control-indicator {
+  background-color: #fec503;
+}
+
+.border-homemade {
+  border: 1px solid rgba(254, 197, 3, 0.36);
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 1px 1px 20px 1px #ededed;
+}
+
+.font-montserrat{
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.9rem!important;
+}
+
+.font-roboto{
+  font-family: Roboto, 'Helvecita Neue', Helvetica, Arial, sans-serif;
+}
+
+:focus{
+  outline: none;
+}
+
+.borderless td, .borderless th {
+  border: none;
+}
+
+agm-map {
+  height: 300px;
+}
+
+.btn{
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 728px){
+  .container{
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: .5rem;
+  }
+
+  .font-montserrat{
+    font-size: 0.8rem! important;
+  }
+
+  .btn{
+    font-size: 0.8rem;
+  }
+}

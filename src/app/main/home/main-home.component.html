@@ -1,0 +1,19 @@
+<block-ui>
+  <div class="wrapper">
+    <aside class="side-container">
+      <main-user-profile [user]="currUser"></main-user-profile>
+      <main-dish-search></main-dish-search>
+    </aside>
+
+    <!--END OF SIDE CONTAINER-->
+
+    <div class="center-container">
+      <div class="container-fluid border-homemade feed-list">
+        <!--<h3 class="page-title" style="background-color: transparent">Top rated dishes</h3>-->
+        <main-feed-card *ngFor="let item of feedItems" [dish]="item" [id]="item.name"></main-feed-card>
+        <h4 *ngIf="feedItems.length == 0">{{'No dishes found'}}</h4>
+      </div>
+    </div>
+  </div>
+  <router-outlet name="modal"></router-outlet>
+</block-ui>
